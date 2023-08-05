@@ -7,7 +7,7 @@ var generateBtn = document.querySelector("#generate");
 let passwordCharaLowercase = "abcdefghijklmnopqrstuvwxyz";
 let passwordCharaUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let passwordCharaNumber = "0123456789";
-let passwordCharaSymbol = "!@#$%^&";
+let passwordCharaSymbol = "!@#$%^&*()+_-=~`";
 
 let criteria1, criteria2, criteria3, criteria4;
 
@@ -54,12 +54,20 @@ function generatePassword() {
   }
 
   // Prompt for password length:
-  let passwordLength = Number(
-    prompt(
-      "Please type in the length of your password! The length of the password needs to have a minimum of 8 characters and a maximum of 128 characters!"
-    )
-  );
-
+  let lengthStatus = true;
+  let passwordLength;
+  while (lengthStatus) {
+    passwordLength = Number(
+      prompt(
+        "Please type in the length of your password! The length of the password needs to have a minimum of 8 characters and a maximum of 128 characters!"
+      )
+    );
+    if (passwordLength >= 8 && passwordLength <= 128) {
+      lengthStatus = false;
+    } else {
+      alert("Invalid password length! Please try again!");
+    }
+  }
   // Define inital password to be empty string
   let password = "";
 
